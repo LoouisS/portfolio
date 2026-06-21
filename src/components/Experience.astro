@@ -1,0 +1,39 @@
+---
+const jobs = [
+  {
+    date: "2023 — Present",
+    company: "Vitaly",
+    role: "Full Stack Engineer",
+    desc: "Building full stack applications with Angular and Spring Boot. Data modeling on Oracle and PostgreSQL, user and invoice management, microservices architecture, and Kubernetes deployments backed by CI/CD pipelines.",
+    techs: ["Angular", "Spring Boot", "Oracle", "PostgreSQL", "Kubernetes", "CI/CD"],
+  },
+  {
+    date: "2022 — 2023",
+    company: "Human Movement Biomechanics Lab — Faculty of Sport Sciences, Cáceres",
+    role: "Full Stack Developer & Data Engineer",
+    desc: "Built full stack applications and data ETLs for movement analysis. Automated data processing pipelines and integrated them into full stack tools using MATLAB, C, Python and R.",
+    techs: ["MATLAB", "Python", "R", "C", "ETL"],
+  },
+];
+---
+
+<section id="experience">
+  <div class="s-tag fu"><span></span>Career</div>
+  <h2 class="s-title fu">Experience</h2>
+  <div class="exp-list">
+    {jobs.map((j) => (
+      <div class="gc exp-card fu">
+        <div class="exp-date-col">
+          <div class="exp-date" set:html={j.date.replace(" — ", " —<br>")} />
+          <div class="exp-dot"></div>
+        </div>
+        <div>
+          <p class="exp-co">{j.company}</p>
+          <h3 class="exp-role">{j.role}</h3>
+          <p class="exp-desc">{j.desc}</p>
+          <div class="ptechs">{j.techs.map((t) => <span class="pt">{t}</span>)}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

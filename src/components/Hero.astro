@@ -1,0 +1,50 @@
+---
+const stack = [
+  "Angular", "TypeScript", "Astro", "Spring Boot", "Java",
+  "Node.js", "Express", "FastAPI", "Oracle", "PostgreSQL",
+  "Docker", "Kubernetes", "CI/CD", "Microservices", "AI Tooling",
+];
+---
+
+<section class="hero" id="home">
+  <div class="bento-hero">
+    <div class="gc bh-main fu">
+      <div class="avail"><span class="pulse"></span>Available for work</div>
+      <h1 class="h-name">Guille Sánchez</h1>
+      <p class="h-role">Full Stack Software Engineer</p>
+      <p class="h-desc">
+        Building full stack systems with Angular and Spring Boot — data modeling, user and
+        billing management, microservices, and Kubernetes deployments with CI/CD pipelines.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-grad">View Work →</a>
+        <a href="#" class="btn-gl">↓ Resume</a>
+      </div>
+      <div class="h-socials">
+        <a class="h-soc" href="#" title="GitHub">GH</a>
+        <a class="h-soc" href="https://www.linkedin.com/in/guillermo-sanchez-becerra/" title="LinkedIn">in</a>
+        <a class="h-soc" href="#" title="Email">✉</a>
+      </div>
+    </div>
+
+    <div class="gc bh-status fu">
+      <div class="status-row"><span class="avail"><span class="pulse"></span>Open to roles</span></div>
+      <p class="status-title">Full Stack Engineer</p>
+      <p class="status-body">Full-time or contract. Remote-friendly.</p>
+      <div style="margin-top:12px" class="stat-row">
+        <div><span class="sn">3.5+</span><span class="sl">years exp.</span></div>
+        <div><span class="sn">2</span><span class="sl">domains</span></div>
+        <div><span class="sn">5+</span><span class="sl">core techs</span></div>
+      </div>
+    </div>
+
+    <div class="gc bh-photo fu">
+      <img src="/images/profile.jpg" alt="Guille Sánchez" />
+    </div>
+
+    <div class="gc bh-chips fu">
+      <span class="bh-chips-label">STACK</span>
+      {stack.map((s) => <span class="gchip">{s}</span>)}
+    </div>
+  </div>
+</section>

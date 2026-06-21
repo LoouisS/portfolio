@@ -1,0 +1,36 @@
+---
+const traits = [
+  { icon: "⬡", title: "Clean Code", desc: "Readability and maintainability first" },
+  { icon: "◎", title: "Architecture", desc: "Systems designed to grow" },
+  { icon: "△", title: "Problem Solving", desc: "Root causes, not symptoms" },
+  { icon: "◇", title: "Teamwork", desc: "Great software is collaborative" },
+  { icon: "◈", title: "Precision", desc: "Attention to every detail" },
+  { icon: "◬", title: "Learning", desc: "Always growing, always curious" },
+];
+---
+
+<section id="about">
+  <div class="s-tag fu"><span></span>About me</div>
+  <h2 class="s-title fu">I write software<br />that scales and lasts</h2>
+  <div class="about-bento">
+    <div class="gc about-main fu">
+      <p>Full stack engineer with 3.5+ years of experience spanning research software and enterprise systems. For the past 2.5 years I've worked at Vitaly building full stack applications with Angular and Spring Boot — data modeling, user and invoice management, microservices, and Kubernetes deployments with CI/CD pipelines.</p>
+      <p>Before that, I spent a year at the Human Movement Biomechanics Lab (Faculty of Sport Sciences, Cáceres), building full stack applications and data ETLs, and automating data analysis with MATLAB, C, Python and R.</p>
+      <p>I care about clean architecture, reliable deployments, and software that holds up once it leaves the lab — or the sprint.</p>
+    </div>
+    <div class="trait-card gc fu">
+      <div class="s-tag"><span></span>Core values</div>
+      <div class="trait-grid">
+        {traits.map((t) => (
+          <div class="trait-item">
+            <span class="trait-icon">{t.icon}</span>
+            <div class="trait-txt">
+              <h4>{t.title}</h4>
+              <p>{t.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

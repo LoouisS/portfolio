@@ -1,0 +1,27 @@
+---
+const groups = [
+  { title: "Frontend", wide: false, items: ["Angular", "Astro", "TypeScript", "JavaScript", "HTML", "CSS"] },
+  { title: "Backend", wide: false, items: ["Java", "Spring Boot", "Node.js", "Express", "FastAPI", "REST APIs"] },
+  { title: "Architecture", wide: false, items: ["Microservices", "Hexagonal Architecture", "MVC", "Data Modeling"] },
+  { title: "Databases", wide: false, items: ["Oracle", "PostgreSQL"] },
+  { title: "DevOps & CI/CD", wide: true, items: ["Docker", "Kubernetes", "CI/CD Pipelines", "Git", "Linux"] },
+  { title: "Data & Research", wide: false, items: ["MATLAB", "Python", "R", "C", "ETL"] },
+  { title: "AI Tooling", wide: false, items: ["Prompt Engineering", "AI-Assisted Development", "LLM Workflows"] },
+];
+---
+
+<section id="skills">
+  <div class="s-tag fu"><span></span>Expertise</div>
+  <h2 class="s-title fu">Technical Skills</h2>
+  <p class="s-desc fu">Full-stack depth across frontend, backend, data, cloud, architecture and testing.</p>
+  <div class="skills-bento">
+    {groups.map((g) => (
+      <div class={`gc skill-cell fu${g.wide ? " skill-cell-wide" : ""}`}>
+        <div class="skill-cell-title">{g.title}</div>
+        <div class="skill-chips">
+          {g.items.map((item) => <span class="sc">{item}</span>)}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
