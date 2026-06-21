@@ -1,0 +1,82 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  name: string;
+}
+
+const { title, name } = Astro.props;
+---
+
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="aurora">
+      <div class="aurora-orb ao1"></div>
+      <div class="aurora-orb ao2"></div>
+      <div class="aurora-orb ao3"></div>
+    </div>
+
+    <nav>
+      <div class="nav-logo">{name}</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="icon-btn" id="themeBtn">☀</button>
+        <a href="#" class="nav-pill">Resume ↗</a>
+      </div>
+    </nav>
+
+    <slot />
+
+    <footer>
+      <span>© {new Date().getFullYear()} {name}</span>
+      <span>Designed with Space Grotesk</span>
+    </footer>
+
+    <script>
+      const obs = new IntersectionObserver(
+        (es) => es.forEach((e) => { if (e.isIntersecting) e.target.classList.add("vis"); }),
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll(".fu").forEach((el) => obs.observe(el));
+      document
+        .querySelectorAll(".bento-hero .fu")
+        .forEach((el, i) => setTimeout(() => el.classList.add("vis"), i * 110));
+
+      let dark = true;
+      const themeBtn = document.getElementById("themeBtn");
+      themeBtn?.addEventListener("click", () => {
+        dark = !dark;
+        document.documentElement.dataset.theme = dark ? "dark" : "light";
+        themeBtn.textContent = dark ? "☀" : "☾";
+      });
+
+      const secs = document.querySelectorAll("section[id]");
+      const navAs = document.querySelectorAll(".nav-links a");
+      window.addEventListener("scroll", () => {
+        let cur = "";
+        secs.forEach((s) => {
+          if (window.scrollY >= (s as HTMLElement).offsetTop - 100) cur = s.id;
+        });
+        navAs.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + cur));
+      });
+    </script>
+  </body>
+</html>
