@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import profile from "../assets/profile.jpg";
+
 const stack = [
   "Angular", "TypeScript", "Astro", "Spring Boot", "Java",
   "Node.js", "Express", "FastAPI", "Oracle", "PostgreSQL",
@@ -10,7 +13,12 @@ const stack = [
   <div class="bento-hero">
     <div class="gc bh-main fu">
       <div class="avail"><span class="pulse"></span>Available for work</div>
-      <h1 class="h-name">Guille Sánchez</h1>
+      <div class="h-name-row">
+        <h1 class="h-name">Guille<br />Sánchez</h1>
+        <div class="h-photo-wrap">
+          <Image src={profile} alt="Guille Sánchez" width={160} height={160} loading="eager" fetchpriority="high" />
+        </div>
+      </div>
       <p class="h-role">Full Stack Software Engineer</p>
       <p class="h-desc">
         Building full stack systems with Angular and Spring Boot — data modeling, user and
@@ -18,28 +26,41 @@ const stack = [
       </p>
       <div class="hero-btns">
         <a href="#projects" class="btn-grad">View Work →</a>
-        <a href="#" class="btn-gl">↓ Resume</a>
+        <a href="#contact" class="btn-gl">Get in Touch</a>
       </div>
       <div class="h-socials">
-        <a class="h-soc" href="#" title="GitHub">GH</a>
-        <a class="h-soc" href="https://www.linkedin.com/in/guillermo-sanchez-becerra/" title="LinkedIn">in</a>
-        <a class="h-soc" href="#" title="Email">✉</a>
+        <a class="h-soc" href="https://github.com/LoouisS" aria-label="GitHub" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><title>GitHub</title><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.7 5.4-5.27 5.68.42.36.78 1.07.78 2.17 0 1.56-.01 2.82-.01 3.2 0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <a class="h-soc" href="https://www.linkedin.com/in/guillermo-sanchez-becerra/" aria-label="LinkedIn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><title>LinkedIn</title><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.38 4.27 5.47v6.27ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+        </a>
+        <a class="h-soc" href="mailto:guillemeister@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><title>Email</title><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm19.4 2.4-9.4 7-9.4-7v.1l9.4 7 9.4-7v-.1ZM2 6.3v11.7h20V6.3l-10 7.45L2 6.3Z"/></svg>
+        </a>
       </div>
     </div>
 
     <div class="gc bh-status fu">
       <div class="status-row"><span class="avail"><span class="pulse"></span>Open to roles</span></div>
       <p class="status-title">Full Stack Engineer</p>
-      <p class="status-body">Full-time or contract. Remote-friendly.</p>
-      <div style="margin-top:12px" class="stat-row">
-        <div><span class="sn">3.5+</span><span class="sl">years exp.</span></div>
-        <div><span class="sn">2</span><span class="sl">domains</span></div>
-        <div><span class="sn">5+</span><span class="sl">core techs</span></div>
-      </div>
-    </div>
+      <p class="status-body">Full-time · Contract · Remote-friendly</p>
 
-    <div class="gc bh-photo fu">
-      <img src="/images/profile.jpg" alt="Guille Sánchez" />
+      <hr class="status-div" />
+
+      <ul class="status-focus">
+        <li><span class="sf-check">✓</span>Full stack web apps</li>
+        <li><span class="sf-check">✓</span>Microservices & CI/CD</li>
+        <li><span class="sf-check">✓</span>Data modeling & ETLs</li>
+      </ul>
+
+      <hr class="status-div" />
+
+      <div class="stat-row">
+        <div class="stat-box"><span class="sn">3.5+</span><span class="sl-strong">Years</span><span class="sl">experience</span></div>
+        <div class="stat-box"><span class="sn">2</span><span class="sl-strong">Domains</span><span class="sl">worked in</span></div>
+        <div class="stat-box"><span class="sn">5+</span><span class="sl-strong">Core techs</span><span class="sl">mastered</span></div>
+      </div>
     </div>
 
     <div class="gc bh-chips fu">
