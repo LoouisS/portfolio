@@ -1,11 +1,58 @@
 ---
 import { Image } from "astro:assets";
-import profile from "../assets/profile.jpg";
+import profile from "../assets/profile-picture.jpeg";
 
-const stack = [
-  "Angular", "TypeScript", "Astro", "Spring Boot", "Java",
-  "Node.js", "Express", "FastAPI", "Oracle", "PostgreSQL",
-  "Docker", "Kubernetes", "CI/CD", "Microservices", "AI Tooling",
+const categories = [
+  {
+    label: "Frontend",
+    techs: [
+      { name: "Angular",    icon: "devicon-angularjs-plain colored" },
+      { name: "TypeScript", icon: "devicon-typescript-plain colored" },
+      { name: "Astro",      icon: "devicon-astro-plain" },
+    ],
+  },
+  {
+    label: "Backend",
+    techs: [
+      { name: "Spring Boot", icon: "devicon-spring-plain colored" },
+      { name: "Java",        icon: "devicon-java-plain colored" },
+      { name: "Node.js",     icon: "devicon-nodejs-plain colored" },
+      { name: "Express",     icon: "devicon-express-original" },
+      { name: "FastAPI",     icon: "devicon-fastapi-plain colored" },
+    ],
+  },
+  {
+    label: "DevOps",
+    techs: [
+      { name: "Docker",      icon: "devicon-docker-plain colored" },
+      { name: "Kubernetes",  icon: "devicon-kubernetes-plain colored" },
+      { name: "CI/CD",       icon: "devicon-githubactions-plain colored" },
+      { name: "Git",         icon: "devicon-git-plain colored" },
+    ],
+  },
+  {
+    label: "Data",
+    techs: [
+      { name: "Oracle",      icon: "devicon-oracle-original colored" },
+      { name: "PostgreSQL",  icon: "devicon-postgresql-plain colored" },
+    ],
+  },
+  {
+    label: "Architecture",
+    techs: [
+      { name: "Microservices", icon: "devicon-apachekafka-original" },
+      { name: "Hexagonal",     icon: "devicon-dot-net-plain colored" },
+      { name: "REST APIs",     icon: "devicon-openapi-plain colored" },
+    ],
+  },
+  {
+    label: "AI",
+    techs: [
+      { name: "Prompt Eng.",    icon: "devicon-pytorch-original colored" },
+      { name: "LLM Workflows",  icon: "devicon-python-plain colored" },
+      { name: "AI-Assisted",    icon: "devicon-github-original" },
+    ],
+  },
 ];
 ---
 
@@ -63,9 +110,22 @@ const stack = [
       </div>
     </div>
 
-    <div class="gc bh-chips fu">
-      <span class="bh-chips-label">STACK</span>
-      {stack.map((s) => <span class="gchip">{s}</span>)}
+    <div class="gc bh-stack fu">
+      <div class="bh-stack-bento">
+        {categories.map((cat) => (
+          <div class="gc stack-cat">
+            <span class="stack-cat-label">{cat.label}</span>
+            <div class="stack-tech-list">
+              {cat.techs.map((t) => (
+                <div class="stack-tech">
+                  <i class={`di ${t.icon}`}></i>
+                  <span>{t.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
