@@ -396,8 +396,7 @@ footer {
 .back-link:hover { transform:translate(2px,2px); box-shadow:2px 2px 0 var(--shadow); }
 
 /* ── ANIMATIONS ── */
-.fu { opacity:0; transform:translateY(22px); transition:opacity .5s ease,transform .5s ease; }
-.fu.vis { opacity:1; transform:none; }
+/* .fu reveal state now driven by GSAP (Layout.astro), not CSS */
 
 @media (max-width: 860px) {
   .bento-hero { grid-template-columns:1fr; }

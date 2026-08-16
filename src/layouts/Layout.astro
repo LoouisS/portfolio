@@ -54,14 +54,22 @@ const { title, name } = Astro.props;
     </footer>
 
     <script>
-      const obs = new IntersectionObserver(
-        (es) => es.forEach((e) => { if (e.isIntersecting) e.target.classList.add("vis"); }),
-        { threshold: 0.1 }
-      );
-      document.querySelectorAll(".fu").forEach((el) => obs.observe(el));
-      document
-        .querySelectorAll(".bento-hero .fu")
-        .forEach((el, i) => setTimeout(() => el.classList.add("vis"), i * 110));
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.set(".fu", { opacity: 0, y: 24 });
+
+      gsap.to(".bento-hero .fu", {
+        opacity: 1, y: 0, duration: 0.7, ease: "power2.out", stagger: 0.12, delay: 0.1,
+      });
+
+      ScrollTrigger.batch(".fu:not(.bento-hero .fu)", {
+        start: "top 88%",
+        end: "bottom 12%",
+        onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", stagger: 0.08 }),
+        onLeaveBack: (els) => gsap.to(els, { opacity: 0, y: 24, duration: 0.4, ease: "power2.in", stagger: 0.05 }),
+      });
 
       let dark = true;
       const themeBtn = document.getElementById("themeBtn");
@@ -71,15 +79,18 @@ const { title, name } = Astro.props;
         themeBtn.textContent = dark ? "☀" : "☾";
       });
 
+      // --- nav active-link scroll spy ---
       const secs = document.querySelectorAll("section[id]");
-      const navAs = document.querySelectorAll(".nav-links a");
-      window.addEventListener("scroll", () => {
-        let cur = "";
+      const navAs = document.querySelectorAll<HTMLAnchorElement>(".nav-links a");
+      const updateNav = () => {
+        let cur = navAs[0]?.getAttribute("href")?.slice(1) ?? "";
         secs.forEach((s) => {
           if (window.scrollY >= (s as HTMLElement).offsetTop - 100) cur = s.id;
         });
         navAs.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + cur));
-      });
+      };
+      window.addEventListener("scroll", updateNav);
+      updateNav();
     </script>
   </body>
 </html>
