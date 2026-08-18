@@ -15,6 +15,11 @@ const { title, name } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      // Runs before paint: applies a stored theme choice ahead of CSS to avoid a flash. Site is dark-first by design; light is an explicit opt-in that persists once chosen.
+      const storedTheme = localStorage.getItem("theme");
+      if (storedTheme === "light") document.documentElement.dataset.theme = "light";
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -41,12 +46,14 @@ const { title, name } = Astro.props;
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-right">
-        <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">☀</button>
+        <button class="icon-btn" id="themeBtn" aria-label="Switch to light theme" aria-pressed="false">☀</button>
         <a href="#" class="nav-pill">Resume ↗</a>
       </div>
     </nav>
 
-    <slot />
+    <main>
+      <slot />
+    </main>
 
     <footer>
       <span>© {new Date().getFullYear()} {name}</span>
@@ -58,25 +65,44 @@ const { title, name } = Astro.props;
       import { ScrollTrigger } from "gsap/ScrollTrigger";
       gsap.registerPlugin(ScrollTrigger);
 
-      gsap.set(".fu", { opacity: 0, y: 24 });
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      gsap.to(".bento-hero .fu", {
-        opacity: 1, y: 0, duration: 0.7, ease: "power2.out", stagger: 0.12, delay: 0.1,
-      });
+      if (reduceMotion) {
+        // Reveal happens, but as a quick opacity fade with no spatial travel and no re-hide on scroll back.
+        gsap.set(".fu", { opacity: 0 });
+        gsap.to(".bento-hero .fu", { opacity: 1, duration: 0.3, stagger: 0.05 });
+        ScrollTrigger.batch(".fu:not(.bento-hero .fu)", {
+          start: "top 95%",
+          onEnter: (els) => gsap.to(els, { opacity: 1, duration: 0.25, stagger: 0.04 }),
+        });
+      } else {
+        gsap.set(".fu", { opacity: 0, y: 24 });
 
-      ScrollTrigger.batch(".fu:not(.bento-hero .fu)", {
-        start: "top 88%",
-        end: "bottom 12%",
-        onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", stagger: 0.08 }),
-        onLeaveBack: (els) => gsap.to(els, { opacity: 0, y: 24, duration: 0.4, ease: "power2.in", stagger: 0.05 }),
-      });
+        gsap.to(".bento-hero .fu", {
+          opacity: 1, y: 0, duration: 0.7, ease: "power2.out", stagger: 0.12, delay: 0.1,
+        });
 
-      let dark = true;
+        ScrollTrigger.batch(".fu:not(.bento-hero .fu)", {
+          start: "top 88%",
+          end: "bottom 12%",
+          onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", stagger: 0.08 }),
+          onLeaveBack: (els) => gsap.to(els, { opacity: 0, y: 24, duration: 0.4, ease: "power2.in", stagger: 0.05 }),
+        });
+      }
+
+      let dark = document.documentElement.dataset.theme !== "light";
       const themeBtn = document.getElementById("themeBtn");
+      if (themeBtn) {
+        themeBtn.textContent = dark ? "☀" : "☾";
+        themeBtn.setAttribute("aria-pressed", String(!dark));
+      }
       themeBtn?.addEventListener("click", () => {
         dark = !dark;
         document.documentElement.dataset.theme = dark ? "dark" : "light";
+        localStorage.setItem("theme", dark ? "dark" : "light");
         themeBtn.textContent = dark ? "☀" : "☾";
+        themeBtn.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+        themeBtn.setAttribute("aria-pressed", String(!dark));
       });
 
       // --- nav active-link scroll spy ---

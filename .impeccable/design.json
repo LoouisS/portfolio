@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-19T00:00:00.000Z",
+  "title": "Design System: Guille Sánchez — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "bg": { "role": "neutral", "displayName": "Void", "canonical": "#18181a", "tonalRamp": ["#0c0c0d", "#141415", "#18181a", "#202022", "#3a3a3d", "#5a5a5d", "#8a8a8d", "#b8b8bb"] },
+      "bg2": { "role": "neutral", "displayName": "Panel", "canonical": "#202022", "tonalRamp": ["#141415", "#18181a", "#202022", "#2a2a2c", "#4a4a4d", "#6a6a6d", "#9a9a9d", "#c8c8cb"] },
+      "text": { "role": "neutral", "displayName": "Paper Text", "canonical": "#f2f2f0", "tonalRamp": ["#17171a", "#3a3a3d", "#5a5a5d", "#7a7a7d", "#9a9a9d", "#c0c0c2", "#e0e0de", "#f2f2f0"] },
+      "muted": { "role": "neutral", "displayName": "Muted", "canonical": "#b8b8bb", "tonalRamp": ["#4a4a4d", "#6a6a6d", "#8a8a8d", "#a0a0a3", "#b8b8bb", "#c8c8cb", "#dcdcde", "#f0f0f0"] },
+      "faint": { "role": "neutral", "displayName": "Faint", "canonical": "#8f8f92", "tonalRamp": ["#3a3a3c", "#4a4a4d", "#656568", "#7a7a7d", "#8f8f92", "#9a9a9d", "#bababc", "#dadada"] },
+      "steel-blue": { "role": "primary", "displayName": "Steel Blue", "canonical": "#8fb2d9", "tonalRamp": ["#152234", "#20344f", "#2c476b", "#3a5a8c", "#5779a8", "#8fb2d9", "#b4cbe6", "#dae7f4"] },
+      "signal-rust": { "role": "secondary", "displayName": "Signal Rust", "canonical": "#e2704f", "tonalRamp": ["#3a170d", "#5c2415", "#8a361f", "#b8482f", "#d05a3c", "#e2704f", "#ee9a80", "#f6c4b3"] },
+      "border": { "role": "neutral", "displayName": "Border / Paper Text", "canonical": "#f2f2f0", "tonalRamp": ["#17171a", "#3a3a3d", "#5a5a5d", "#7a7a7d", "#9a9a9d", "#c0c0c2", "#e0e0de", "#f2f2f0"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero name only." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles." },
+      "headline-lg": { "displayName": "Headline Large", "purpose": "Contact closing headline only — same role, wider 56px cap for the page's final CTA." },
+      "stat": { "displayName": "Stat", "purpose": "Hero stat numbers — largest numeric display." },
+      "stat-sm": { "displayName": "Stat Small", "purpose": "Status card role title — same tier as Stat, one step down." },
+      "title": { "displayName": "Title", "purpose": "Content-card titles — experience role." },
+      "title-sm": { "displayName": "Title Small", "purpose": "Compact card titles — project name." },
+      "eyebrow": { "displayName": "Eyebrow", "purpose": "Single role-tagline under the hero name." },
+      "body": { "displayName": "Body", "purpose": "Primary paragraph copy — hero/section descriptions, About paragraphs." },
+      "body-sm": { "displayName": "Body Small", "purpose": "Denser secondary paragraph copy — project description." },
+      "label-lg": { "displayName": "Label Large", "purpose": "Most prominent label tier — nav links, buttons, company name, status body line." },
+      "label-md": { "displayName": "Label Medium", "purpose": "Stat sub-labels, contact links, experience date." },
+      "label-sm": { "displayName": "Label Small", "purpose": "Section tags, availability pill, skill chips, stack category labels, footer." },
+      "label-xs": { "displayName": "Label Extra Small", "purpose": "Smallest label tier — stat captions, project tech tags, status badges." }
+    },
+    "shadows": [
+      { "name": "card-rest", "value": "6px 6px 0 var(--shadow)", "purpose": "Default offset shadow for .gc cards, hero photo, back-link." },
+      { "name": "card-hover", "value": "8px 8px 0 var(--shadow)", "purpose": "Card grows shadow and lifts -2px/-2px on hover." },
+      { "name": "button-rest", "value": "6px 6px 0 var(--border)", "purpose": "Primary/secondary button default offset shadow." },
+      { "name": "button-press", "value": "3px 3px 0 var(--border)", "purpose": "Button shrinks shadow and translates 3px/3px toward it on hover." },
+      { "name": "pill-press", "value": "2px 2px 0 var(--border)", "purpose": "Nav pill shrinks shadow and translates 2px/2px on hover." }
+    ],
+    "motion": [
+      { "name": "press-fast", "value": "0.1s", "purpose": "Button/pill hover translate + shadow shrink." },
+      { "name": "surface-fast", "value": "0.15s", "purpose": "Card hover lift, nav link color, icon-btn state." },
+      { "name": "pulse", "value": "2s infinite", "purpose": "Availability status dot opacity pulse (1 to 0.35)." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "860px" },
+      { "name": "mobile", "value": "480px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Steel Blue filled CTA with hard offset shadow, e.g. 'View Work'.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">View Work →</a>",
+      "css": ".ds-btn-primary { padding: 12px 24px; border-radius: 0; background: #8fb2d9; border: 2px solid #8fb2d9; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #18181a; cursor: pointer; transition: all 0.1s; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; box-shadow: 6px 6px 0 #f2f2f0; } .ds-btn-primary:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0 #f2f2f0; } .ds-btn-primary:focus-visible { outline: 2px solid #8fb2d9; outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ghost-style outlined button, e.g. 'Get in Touch'.",
+      "html": "<a href=\"#\" class=\"ds-btn-secondary\">Get in Touch</a>",
+      "css": ".ds-btn-secondary { padding: 12px 24px; border-radius: 0; border: 2px solid #f2f2f0; background: #18181a; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #f2f2f0; cursor: pointer; transition: all 0.1s; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; box-shadow: 6px 6px 0 #f2f2f0; } .ds-btn-secondary:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0 #f2f2f0; } .ds-btn-secondary:focus-visible { outline: 2px solid #8fb2d9; outline-offset: 3px; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Hard-bordered flat card with structural offset shadow, base unit of every bento grid.",
+      "html": "<div class=\"ds-card\"><span class=\"ds-card-tag\">About me</span><p>Full stack engineer with 3.5+ years of experience.</p></div>",
+      "css": ".ds-card { background: #18181a; border: 2px solid #f2f2f0; border-radius: 0; box-shadow: 6px 6px 0 #8fb2d9; padding: 24px; transition: transform 0.15s, box-shadow 0.15s; color: #f2f2f0; } .ds-card:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 #8fb2d9; } .ds-card-tag { display: inline-flex; align-items: center; padding: 5px 14px; border: 2px solid #f2f2f0; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; } .ds-card p { font-size: 15px; color: #b8b8bb; line-height: 1.8; }"
+    },
+    {
+      "name": "Skill Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Flat tag used for skills and project tech stacks, no shadow, hover-inverts.",
+      "html": "<span class=\"ds-chip\">Spring Boot</span>",
+      "css": ".ds-chip { display: inline-flex; padding: 5px 12px; border-radius: 0; border: 2px solid #f2f2f0; background: #18181a; font-size: 12px; font-weight: 600; color: #f2f2f0; transition: all 0.15s; cursor: default; } .ds-chip:hover { background: #8fb2d9; border-color: #8fb2d9; color: #18181a; }"
+    },
+    {
+      "name": "Status Badge — Live",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Signal Rust status badge for shipped/live projects.",
+      "html": "<span class=\"ds-badge-live\">Live</span>",
+      "css": ".ds-badge-live { padding: 3px 12px; border-radius: 0; border: 2px solid #e2704f; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; background: #e2704f; color: #18181a; }"
+    },
+    {
+      "name": "Availability Pill",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Pulsing status pill, e.g. 'Available for work'.",
+      "html": "<span class=\"ds-avail\"><span class=\"ds-pulse\"></span>Available for work</span>",
+      "css": ".ds-avail { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: 0; border: 2px solid #f2f2f0; background: #18181a; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #f2f2f0; width: fit-content; } .ds-pulse { width: 7px; height: 7px; border-radius: 50%; background: #e2704f; animation: ds-pulse 2s infinite; } @keyframes ds-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }"
+    },
+    {
+      "name": "Nav Pill",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Compact primary CTA used in the fixed nav bar, e.g. 'Resume'.",
+      "html": "<a href=\"#\" class=\"ds-nav-pill\">Resume ↗</a>",
+      "css": ".ds-nav-pill { padding: 8px 18px; border-radius: 0; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background: #8fb2d9; color: #18181a; border: 2px solid #8fb2d9; box-shadow: 4px 4px 0 #f2f2f0; cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none; display: inline-block; } .ds-nav-pill:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #f2f2f0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Brutalist Terminal",
+    "overview": "This is raw, unornamented, systems-engineer honesty rendered as interface: no gloss, no gradient, no blur — just structure. Every surface is a flat block with a hard 2px edge and a solid offset shadow standing in for depth. Type is condensed, uppercase, and load-bearing — headlines behave like stenciled labels on a technical drawing, not editorial display copy. The system trusts structure to carry personality instead of decoration. Dark-first: the site ships in dark mode by default, with a light theme as the explicit alternate, not the primary experience.",
+    "keyCharacteristics": [
+      "Zero border-radius everywhere — no rounded corners, no exceptions.",
+      "Hard 2px borders on every bounded surface, always solid, always full-opacity.",
+      "Offset block shadows (never blurred) as the sole depth cue — structural, not ambient.",
+      "Barlow Condensed, uppercase, letter-spaced for all headlines/labels; Barlow (regular case) for body copy.",
+      "No glassmorphism, no gradients, no soft shadows, no glow — --glass and --glassb are literally transparent in the tokens, --r/--rl are literally 0px."
+    ],
+    "rules": [
+      { "name": "The One Ink Rule", "body": "Border color and text color are the same token (--border = --text). Structure and content are drawn in one ink; nothing is a lighter or softer gray border floating apart from the type.", "section": "colors" },
+      { "name": "The All-Caps Structural Rule", "body": "Anything that is UI chrome (nav, buttons, tags, badges, labels) is Barlow Condensed and uppercase. Anything that is content to be read (descriptions, paragraphs) is Barlow and sentence case. Mixing the two inverts the hierarchy and breaks the system.", "section": "typography" },
+      { "name": "The Press-Not-Lift Rule", "body": "Buttons and pills move toward their shadow on hover/press (shadow shrinks). Cards move away from their shadow on hover (shadow grows). The direction signals affordance: buttons are pressed, cards are lifted for inspection.", "section": "elevation" },
+      { "name": "The Four-Step Label Rule", "body": "The label ladder has exactly four steps (11/12/13/14px) and each is reserved for its documented tier. A new UI-chrome element reuses one of the four, it doesn't introduce a fifth.", "section": "typography" }
+    ],
+    "dos": [
+      "Do keep every bounded surface at 0px radius — this is the system's most load-bearing invariant.",
+      "Do use offset block shadows only (no blur radius, ever) for depth.",
+      "Do reserve Signal Rust strictly for liveness/status signals (pulse dot, live badge, timeline dot) — never as a general second interactive color.",
+      "Do set UI chrome (nav, labels, buttons, tags) in Barlow Condensed uppercase, and reading content in Barlow sentence case.",
+      "Do move buttons toward their shadow on hover and cards away from theirs — the direction is the affordance cue, keep it consistent."
+    ],
+    "donts": [
+      "Don't introduce blur, glassmorphism, soft/diffuse shadows, or gradients anywhere — the tokens already encode this rejection (--glass, --glassb are transparent).",
+      "Don't round any corner, even slightly, to \"soften\" a dense grid — density is handled by spacing, not by softening the shape language.",
+      "Don't use Steel Blue and Signal Rust interchangeably — they carry distinct meanings (interactive vs. status).",
+      "Don't apply the card shadow-hover pattern to chips/tags — chips stay flat and shadowless; only cards and buttons carry shadows."
+    ]
+  }
+}

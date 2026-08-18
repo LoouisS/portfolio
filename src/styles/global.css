@@ -5,7 +5,7 @@
   --glassb:  transparent;
   --text:    #17171a;
   --muted:   #4a4a4d;
-  --faint:   #7a7a7d;
+  --faint:   #656568;
   --pur:     #3a5a8c;
   --pur2:    #3a5a8c;
   --teal:    #b8482f;
@@ -24,7 +24,7 @@
   --glassb:  transparent;
   --text:    #f2f2f0;
   --muted:   #b8b8bb;
-  --faint:   #7d7d80;
+  --faint:   #8f8f92;
   --pur:     #8fb2d9;
   --pur2:    #8fb2d9;
   --teal:    #e2704f;
@@ -88,6 +88,10 @@ nav {
 }
 .icon-btn:hover { background:var(--pur2); color:var(--bg); border-color:var(--pur2); }
 
+@media (pointer: coarse) {
+  .icon-btn { width:44px; height:44px; }
+}
+
 /* ── HARD CARD ── */
 .gc {
   background:var(--bg);
@@ -143,6 +147,10 @@ nav {
 }
 .pulse { width:7px; height:7px; border-radius:50%; background:var(--teal); animation:pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.35} }
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse { animation: none; opacity: 1; }
+}
 .h-name-row { display:flex; align-items:stretch; justify-content:space-between; gap:20px; }
 .h-name {
   font-family:'Barlow Condensed',sans-serif;
@@ -194,6 +202,10 @@ nav {
 }
 .h-soc svg { width:16px; height:16px; fill:currentColor; }
 .h-soc:hover { background:var(--pur2); color:var(--bg); border-color:var(--pur2); }
+
+@media (pointer: coarse) {
+  .h-soc { width:44px; height:44px; }
+}
 .stat-row { display:flex; gap:20px; }
 .stat-row > div { display:flex; flex-direction:column; }
 .sn { font-family:'Barlow Condensed',sans-serif; font-size:32px; font-weight:700; letter-spacing:.01em; color:var(--text); }
@@ -273,7 +285,7 @@ nav {
   display:flex; align-items:center; justify-content:center;
   background:var(--bg); color:var(--pur2); font-size:15px;
 }
-.trait-txt h4 {
+.trait-txt h3 {
   font-family:'Barlow Condensed',sans-serif;
   font-size:14px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; margin-bottom:2px;
 }
@@ -365,6 +377,8 @@ nav {
   font-size:clamp(32px,4.5vw,56px); font-weight:700; letter-spacing:.01em; line-height:1.02;
   text-transform:uppercase; color:var(--text);
 }
+.c-sub { font-size:15px; color:var(--muted); max-width:440px; line-height:1.7; }
+.c-loc { font-size:13px; color:var(--faint); }
 .c-email {
   font-family:'Barlow Condensed',sans-serif;
   font-size:clamp(20px,3vw,32px); font-weight:700; letter-spacing:.01em;
@@ -455,5 +469,4 @@ footer {
   .c-links { flex-wrap:wrap; justify-content:center; }
 
   .nav-pill { padding:6px 14px; font-size:12px; }
-  .icon-btn { width:32px; height:32px; }
 }

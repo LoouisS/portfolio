@@ -1,0 +1,33 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font-size",
+        "value": "18px",
+        "createdAt": "2026-08-18T22:41:19.447Z",
+        "reason": "icon glyph sizing (.stack-tech .di, Devicon font) — not prose typography, excluded from type scale per DESIGN.md Typography section"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "38px",
+        "createdAt": "2026-08-18T22:41:19.514Z",
+        "reason": "mobile-breakpoint clamp variant of the documented Display role (.h-name at <=480px)"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "48px",
+        "createdAt": "2026-08-18T22:41:19.577Z",
+        "reason": "mobile-breakpoint clamp variant of the documented Display role (.h-name at <=480px)"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "19px",
+        "createdAt": "2026-08-18T22:41:19.638Z",
+        "reason": "mobile-breakpoint variant of the documented Title role (.exp-role at <=480px)"
+      }
+    ]
+  }
+}
