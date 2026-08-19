@@ -1,21 +1,19 @@
 ---
-const groups = [
-  { title: "Frontend", wide: false, items: ["Angular", "Astro", "TypeScript", "JavaScript", "HTML", "CSS"] },
-  { title: "Backend", wide: false, items: ["Java", "Spring Boot", "Node.js", "Express", "FastAPI", "REST APIs"] },
-  { title: "Architecture", wide: false, items: ["Microservices", "Hexagonal Architecture", "MVC", "Data Modeling"] },
-  { title: "Databases", wide: false, items: ["Oracle", "PostgreSQL"] },
-  { title: "DevOps & CI/CD", wide: true, items: ["Docker", "Kubernetes", "CI/CD Pipelines", "Git", "Linux"] },
-  { title: "Data & Research", wide: false, items: ["MATLAB", "Python", "R", "C", "ETL"] },
-  { title: "AI Tooling", wide: false, items: ["Prompt Engineering", "AI-Assisted Development", "LLM Workflows"] },
-];
+import { useTranslations, type Lang } from "../i18n/content";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang).skills;
 ---
 
 <section id="skills">
-  <div class="s-tag fu"><span></span>Expertise</div>
-  <h2 class="s-title fu">Technical Skills</h2>
-  <p class="s-desc fu">Full-stack depth across frontend, backend, data, cloud, architecture and testing.</p>
+  <div class="s-tag fu"><span></span>{t.tag}</div>
+  <h2 class="s-title fu">{t.title}</h2>
+  <p class="s-desc fu">{t.desc}</p>
   <div class="skills-bento">
-    {groups.map((g) => (
+    {t.groups.map((g) => (
       <div class={`gc skill-cell fu${g.wide ? " skill-cell-wide" : ""}`}>
         <div class="skill-cell-title">{g.title}</div>
         <div class="skill-chips">

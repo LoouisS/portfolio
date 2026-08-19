@@ -1,79 +1,56 @@
 ---
 import { Image } from "astro:assets";
 import profile from "../assets/profile-picture.jpeg";
+import { useTranslations, type Lang } from "../i18n/content";
 
-const categories = [
-  {
-    label: "Frontend",
-    techs: [
-      { name: "Angular",    icon: "devicon-angularjs-plain colored" },
-      { name: "TypeScript", icon: "devicon-typescript-plain colored" },
-      { name: "Astro",      icon: "devicon-astro-plain" },
-    ],
-  },
-  {
-    label: "Backend",
-    techs: [
-      { name: "Spring Boot", icon: "devicon-spring-plain colored" },
-      { name: "Java",        icon: "devicon-java-plain colored" },
-      { name: "Node.js",     icon: "devicon-nodejs-plain colored" },
-      { name: "Express",     icon: "devicon-express-original" },
-      { name: "FastAPI",     icon: "devicon-fastapi-plain colored" },
-    ],
-  },
-  {
-    label: "DevOps",
-    techs: [
-      { name: "Docker",      icon: "devicon-docker-plain colored" },
-      { name: "Kubernetes",  icon: "devicon-kubernetes-plain colored" },
-      { name: "CI/CD",       icon: "devicon-githubactions-plain colored" },
-      { name: "Git",         icon: "devicon-git-plain colored" },
-    ],
-  },
-  {
-    label: "Data",
-    techs: [
-      { name: "Oracle",      icon: "devicon-oracle-original colored" },
-      { name: "PostgreSQL",  icon: "devicon-postgresql-plain colored" },
-    ],
-  },
-  {
-    label: "Architecture",
-    techs: [
-      { name: "Microservices", icon: "devicon-apachekafka-original" },
-      { name: "Hexagonal",     icon: "devicon-dot-net-plain colored" },
-      { name: "REST APIs",     icon: "devicon-openapi-plain colored" },
-    ],
-  },
-  {
-    label: "AI",
-    techs: [
-      { name: "Prompt Eng.",    icon: "devicon-pytorch-original colored" },
-      { name: "LLM Workflows",  icon: "devicon-python-plain colored" },
-      { name: "AI-Assisted",    icon: "devicon-github-original" },
-    ],
-  },
-];
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang).hero;
+
+const icons: Record<string, string> = {
+  Angular: "devicon-angularjs-plain colored",
+  TypeScript: "devicon-typescript-plain colored",
+  Astro: "devicon-astro-plain",
+  "Spring Boot": "devicon-spring-plain colored",
+  Java: "devicon-java-plain colored",
+  "Node.js": "devicon-nodejs-plain colored",
+  Express: "devicon-express-original",
+  FastAPI: "devicon-fastapi-plain colored",
+  Docker: "devicon-docker-plain colored",
+  Kubernetes: "devicon-kubernetes-plain colored",
+  "CI/CD": "devicon-githubactions-plain colored",
+  Git: "devicon-git-plain colored",
+  Oracle: "devicon-oracle-original colored",
+  PostgreSQL: "devicon-postgresql-plain colored",
+  Microservices: "devicon-apachekafka-original",
+  Microservicios: "devicon-apachekafka-original",
+  Hexagonal: "devicon-dot-net-plain colored",
+  "REST APIs": "devicon-openapi-plain colored",
+  "Prompt Eng.": "devicon-pytorch-original colored",
+  "LLM Workflows": "devicon-python-plain colored",
+  "Flujos LLM": "devicon-python-plain colored",
+  "AI-Assisted": "devicon-github-original",
+  "Asistido por IA": "devicon-github-original",
+};
+const iconFor = (name: string) => icons[name] ?? "";
 ---
 
 <section class="hero" id="home">
   <div class="bento-hero">
     <div class="gc bh-main fu">
-      <div class="avail"><span class="pulse"></span>Available for work</div>
       <div class="h-name-row">
         <h1 class="h-name">Guille<br />Sánchez</h1>
         <div class="h-photo-wrap">
           <Image src={profile} alt="Guille Sánchez" width={160} height={160} loading="eager" fetchpriority="high" />
         </div>
       </div>
-      <p class="h-role">Full Stack Software Engineer</p>
-      <p class="h-desc">
-        Building full stack systems with Angular and Spring Boot — data modeling, user and
-        billing management, microservices, and Kubernetes deployments with CI/CD pipelines.
-      </p>
+      <p class="h-role">{t.role}</p>
+      <p class="h-desc">{t.desc}</p>
       <div class="hero-btns">
-        <a href="#projects" class="btn-grad">View Work →</a>
-        <a href="#contact" class="btn-gl">Get in Touch</a>
+        <a href="#projects" class="btn-grad">{t.viewWork}</a>
+        <a href="#contact" class="btn-gl">{t.getInTouch}</a>
       </div>
       <div class="h-socials">
         <a class="h-soc" href="https://github.com/LoouisS" aria-label="GitHub" target="_blank" rel="noopener">
@@ -89,37 +66,35 @@ const categories = [
     </div>
 
     <div class="gc bh-status fu">
-      <div class="status-row"><span class="avail"><span class="pulse"></span>Open to roles</span></div>
-      <p class="status-title">Full Stack Engineer</p>
-      <p class="status-body">Full-time · Contract · Remote-friendly</p>
+      <div class="status-row"><span class="avail"><span class="pulse"></span>{t.openToRoles}</span></div>
+      <p class="status-title">{t.statusTitle}</p>
+      <p class="status-body">{t.statusBody}</p>
 
       <hr class="status-div" />
 
       <ul class="status-focus">
-        <li><span class="sf-check">✓</span>Full stack web apps</li>
-        <li><span class="sf-check">✓</span>Microservices & CI/CD</li>
-        <li><span class="sf-check">✓</span>Data modeling & ETLs</li>
+        {t.focus.map((f) => <li><span class="sf-check">✓</span>{f}</li>)}
       </ul>
 
       <hr class="status-div" />
 
       <div class="stat-row">
-        <div class="stat-box"><span class="sn">3.5+</span><span class="sl-strong">Years</span><span class="sl">experience</span></div>
-        <div class="stat-box"><span class="sn">2</span><span class="sl-strong">Domains</span><span class="sl">worked in</span></div>
-        <div class="stat-box"><span class="sn">5+</span><span class="sl-strong">Core techs</span><span class="sl">mastered</span></div>
+        {t.stats.map((s) => (
+          <div class="stat-box"><span class="sn">{s.n}</span><span class="sl-strong">{s.strong}</span><span class="sl">{s.label}</span></div>
+        ))}
       </div>
     </div>
 
     <div class="gc bh-stack fu">
       <div class="bh-stack-bento">
-        {categories.map((cat) => (
+        {t.categories.map((cat) => (
           <div class="gc stack-cat">
             <span class="stack-cat-label">{cat.label}</span>
             <div class="stack-tech-list">
-              {cat.techs.map((t) => (
+              {cat.techs.map((name) => (
                 <div class="stack-tech">
-                  <i class={`di ${t.icon}`}></i>
-                  <span>{t.name}</span>
+                  <i class={`di ${iconFor(name)}`}></i>
+                  <span>{name}</span>
                 </div>
               ))}
             </div>

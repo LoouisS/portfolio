@@ -1,20 +1,17 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import About from "../components/About.astro";
-import Skills from "../components/Skills.astro";
-import Experience from "../components/Experience.astro";
-import Contact from "../components/Contact.astro";
 ---
 
-<Layout
-  title="Guille Sanchez — Full Stack Engineer"
-  name="Guille Sanchez"
-  description="Full Stack Software Engineer specializing in Angular, Spring Boot, microservices, and Kubernetes/CI-CD, with a data engineering background. Available for full-time and contract roles."
->
-  <Hero />
-  <About />
-  <Skills />
-  <Experience />
-  <Contact />
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/en/" />
+    <title>Guille Sanchez — Full Stack Engineer</title>
+    <script is:inline>
+      const saved = localStorage.getItem("lang");
+      const lang = saved === "es" || saved === "en" ? saved : navigator.language.startsWith("es") ? "es" : "en";
+      location.replace(`/${lang}/`);
+    </script>
+  </head>
+  <body></body>
+</html>

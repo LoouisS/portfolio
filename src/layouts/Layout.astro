@@ -1,23 +1,32 @@
 ---
 import "../styles/global.css";
+import { useTranslations, type Lang } from "../i18n/content";
 
 interface Props {
   title: string;
   name: string;
   description?: string;
+  lang?: Lang;
 }
 
 const {
   title,
   name,
   description = "Guille Sánchez — Full Stack Software Engineer. Angular, Spring Boot, microservices, Kubernetes/CI-CD, and data engineering.",
+  lang = "en",
 } = Astro.props;
+
+const t = useTranslations(lang).nav;
+const tf = useTranslations(lang).footer;
+const otherLang: Lang = lang === "en" ? "es" : "en";
+const isLocalized = Astro.url.pathname.startsWith(`/${lang}/`) || Astro.url.pathname === `/${lang}`;
+const otherPath = Astro.url.pathname.replace(`/${lang}`, `/${otherLang}`);
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL("/og-image.jpg", Astro.site);
 ---
 
-<html lang="en" data-theme="dark">
+<html lang={lang} data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -67,14 +76,17 @@ const ogImageURL = new URL("/og-image.jpg", Astro.site);
     <nav>
       <div class="nav-logo">{name}</div>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">{t.about}</a></li>
+        <li><a href="#skills">{t.skills}</a></li>
+        <li><a href="#experience">{t.experience}</a></li>
+        <li><a href="#contact">{t.contact}</a></li>
       </ul>
       <div class="nav-right">
-        <button class="icon-btn" id="themeBtn" aria-label="Switch to light theme" aria-pressed="false">☀</button>
-        <a href="#" class="nav-pill">Resume ↗</a>
+        {isLocalized && (
+          <a href={otherPath} class="icon-btn" aria-label={otherLang === "es" ? "Cambiar a Español" : "Switch to English"}>{otherLang.toUpperCase()}</a>
+        )}
+        <button class="icon-btn" id="themeBtn" aria-label={t.themeToLight} aria-pressed="false" data-to-light={t.themeToLight} data-to-dark={t.themeToDark}>☀</button>
+        <a href="#" class="nav-pill">{t.resume}</a>
       </div>
     </nav>
 
@@ -84,8 +96,8 @@ const ogImageURL = new URL("/og-image.jpg", Astro.site);
 
     <footer>
       <span>© {new Date().getFullYear()} {name}</span>
-      <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
-      <span>Set in Barlow</span>
+      <span><a href="/privacy">{tf.privacy}</a> · <a href="/terms">{tf.terms}</a></span>
+      <span>{tf.setIn}</span>
     </footer>
 
     <script>
@@ -129,8 +141,17 @@ const ogImageURL = new URL("/og-image.jpg", Astro.site);
         document.documentElement.dataset.theme = dark ? "dark" : "light";
         localStorage.setItem("theme", dark ? "dark" : "light");
         themeBtn.textContent = dark ? "☀" : "☾";
-        themeBtn.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+        themeBtn.setAttribute("aria-label", dark ? themeBtn.dataset.toLight! : themeBtn.dataset.toDark!);
         themeBtn.setAttribute("aria-pressed", String(!dark));
+      });
+
+      // --- lang switcher: remember choice so root redirect skips detection next visit ---
+      document.querySelectorAll<HTMLAnchorElement>('a[href^="/en/"], a[href^="/es/"]').forEach((a) => {
+        if (!a.classList.contains("icon-btn")) return;
+        a.addEventListener("click", () => {
+          const chosen = a.getAttribute("href")?.startsWith("/es/") ? "es" : "en";
+          localStorage.setItem("lang", chosen);
+        });
       });
 
       // --- nav active-link scroll spy ---

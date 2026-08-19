@@ -1,19 +1,24 @@
 ---
+import { useTranslations, type Lang } from "../i18n/content";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang).contact;
 const email = "guillemeister11@gmail.com";
 ---
 
 <section id="contact">
-  <div class="s-tag fu"><span></span>Get in touch</div>
+  <div class="s-tag fu"><span></span>{t.tag}</div>
   <div class="gc contact-card fu">
-    <h2 class="c-title">Let's build something<br />remarkable together</h2>
-    <p class="c-sub">
-      Open to full-time roles, contract work, and interesting collaborations. Currently available.
-    </p>
+    <h2 class="c-title" set:html={t.title} />
+    <p class="c-sub">{t.sub}</p>
     <a href={`mailto:${email}`} class="c-email">{email}</a>
     <div class="c-links">
-      <a href="https://github.com/LoouisS" class="cl" target="_blank" rel="noopener">GitHub ↗</a>
-      <a href="https://www.linkedin.com/in/guillermo-sanchez-becerra/" class="cl" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://github.com/LoouisS" class="cl" target="_blank" rel="noopener">{t.github}</a>
+      <a href="https://www.linkedin.com/in/guillermo-sanchez-becerra/" class="cl" target="_blank" rel="noopener">{t.linkedin}</a>
     </div>
-    <p class="c-loc">Spain · Remote-friendly</p>
+    <p class="c-loc">{t.loc}</p>
   </div>
 </section>

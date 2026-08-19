@@ -1,32 +1,31 @@
 ---
-const traits = [
-  { icon: "⬡", title: "Clean Code", desc: "Readable and maintainable" },
-  { icon: "◎", title: "Architecture", desc: "Built to grow without breaking" },
-  { icon: "△", title: "Problem Solving", desc: "Root causes, not symptoms" },
-  { icon: "⊕", title: "Ownership", desc: "End-to-end accountability" },
-  { icon: "◫", title: "Communication", desc: "Clear handoffs, no ambiguity" },
-  { icon: "✧", title: "Adaptability", desc: "Fast across domains and stacks" },
-];
+import { useTranslations, type Lang } from "../i18n/content";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang).about;
 ---
 
 <section id="about">
-  <div class="s-tag fu"><span></span>About me</div>
-  <h2 class="s-title fu">I write software<br />that scales and lasts</h2>
+  <div class="s-tag fu"><span></span>{t.tag}</div>
+  <h2 class="s-title fu" set:html={t.title} />
   <div class="about-bento">
     <div class="gc about-main fu">
-      <p>Full stack engineer with 3.5+ years of experience spanning research software and enterprise systems. For the past 2.5 years I've worked at Vitaly building full stack applications with Angular and Spring Boot — data modeling, user and invoice management, microservices, and Kubernetes deployments with CI/CD pipelines.</p>
-      <p>Before that, I spent a year at the Human Movement Biomechanics Lab (Faculty of Sport Sciences, Cáceres), building full stack applications and data ETLs, and automating data analysis with MATLAB, C, Python and R.</p>
-      <p>I care about clean architecture, reliable deployments, and software that holds up once it leaves the lab — or the sprint.</p>
+      <p>{t.p1}</p>
+      <p>{t.p2}</p>
+      <p>{t.p3}</p>
     </div>
     <div class="trait-card gc fu">
-      <div class="s-tag"><span></span>Core values</div>
+      <div class="s-tag"><span></span>{t.coreValues}</div>
       <div class="trait-grid">
-        {traits.map((t) => (
+        {t.traits.map((tr) => (
           <div class="trait-item">
-            <span class="trait-icon">{t.icon}</span>
+            <span class="trait-icon">{tr.icon}</span>
             <div class="trait-txt">
-              <h3>{t.title}</h3>
-              <p>{t.desc}</p>
+              <h3>{tr.title}</h3>
+              <p>{tr.desc}</p>
             </div>
           </div>
         ))}
