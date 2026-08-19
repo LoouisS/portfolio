@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
 import { useTranslations, type Lang } from "../i18n/content";
 
 interface Props {
@@ -51,6 +52,7 @@ const ogImageURL = new URL("/og-image.jpg", Astro.site);
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#18181a" />
+    <ClientRouter fallback="animate" />
     <script is:inline>
       // Runs before paint: applies a stored theme choice ahead of CSS to avoid a flash. Site is dark-first by design; light is an explicit opt-in that persists once chosen.
       const storedTheme = localStorage.getItem("theme");
