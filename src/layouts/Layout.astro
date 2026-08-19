@@ -4,9 +4,17 @@ import "../styles/global.css";
 interface Props {
   title: string;
   name: string;
+  description?: string;
 }
 
-const { title, name } = Astro.props;
+const {
+  title,
+  name,
+  description = "Guille Sánchez — Full Stack Software Engineer. Angular, Spring Boot, microservices, Kubernetes/CI-CD, and data engineering.",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL("/og-image.jpg", Astro.site);
 ---
 
 <html lang="en" data-theme="dark">
@@ -14,6 +22,19 @@ const { title, name } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script is:inline>
       // Runs before paint: applies a stored theme choice ahead of CSS to avoid a flash. Site is dark-first by design; light is an explicit opt-in that persists once chosen.
